@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content" style="width:100%;">
+
+
+                      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Upload Data</button>
+                      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2">Dashboard</button>
+                      <a href="/logout" class="btn btn-info">logout</a>
+                      <div id="demo2" class="collapse">
+                          <div class="container">
+                                  <table class="table" style="width:77%;">
+                                    <thead>
+                                      <tr>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                     {% for i in trackes_record %}
+                                      <tr>
+                                        <td>{{i.name}}</td>
+                                        <td>{{i.year}}</td>
+                                        <td>{{i.artist}}</td>
+                                        <td>{{i.composer}}</td>
+                                      </tr>
+                                     {% endfor %}
+                                    </tbody>
+                                  </table>
+                                </div>
+                      </div>
+
+                      <div id="demo" class="collapse">
+                          <form method="post" action="/" enctype="multipart/form-data">
+                          <p><input type="file" name="file"></p>
+                          <p><input type="submit" value="Submit"></p>
+                            {% if check == 1 %}
+                            <div class="container">
+                                  <table class="table" style="width:77%;">
+                                    <thead>
+                                      <tr>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                     {% for i in temp_data %}
+                                      <tr>
+                                        <td>{{i[0]}}</td>
+                                        <td>{{i[1]}}</td>
+                                        <td>{{i[2]}}</td>
+                                        <td>{{i[3]}}</td>
+                                      </tr>
+                                     {% endfor %}
+                                    </tbody>
+                                  </table>
+                                </div>
+                            {% endif %}
+                        </form>
+                      </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
